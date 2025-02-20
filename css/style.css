@@ -537,6 +537,9 @@ textarea{
     html {
         font-size: 50%;
     }
+    .home {
+        transform: translateY(20%);
+    }
     .col {
         width: 100%;
     }
@@ -544,6 +547,9 @@ textarea{
 @media (max-width: 365px) {
     html {
         font-size: 43%;
+    }
+    .home {
+        transform: translateY(15%);
     }
     .footer {
         flex-direction: column-reverse;
