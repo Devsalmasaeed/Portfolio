@@ -195,3 +195,40 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+
+document.getElementById("submitButton").addEventListener("click", function (e) {
+    e.preventDefault(); // Prevent default anchor behavior
+    document.querySelector("form").submit(); // Submits the form
+});
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Convert form data to a JSON object
+    const formData = new FormData(e.target);
+    const formObject = Object.fromEntries(formData.entries());
+
+    try {
+        const response = await fetch("https://formspree.io/f/xrbeyopg", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",  
+            "Accept": "application/json",
+        },
+        body: JSON.stringify(formObject), 
+    });
+
+    if (response.ok) {
+        alert("Message sent successfully!");
+        e.target.reset(); 
+    } else {
+        alert("Failed to send message. Please check your input.");
+    }
+        } catch (error) {
+    console.error("Error sending message:", error);
+    alert("An error occurred. Please try again.");
+    }
+};
+
+document.querySelector(".contact__form").addEventListener("submit", handleSubmit);
